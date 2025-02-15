@@ -15,13 +15,16 @@ const Header = () => {
                 <div className="col-md-12 mt-3">
                     <h3>About Us</h3>
                     <p>
-                        Welcome to EverGreen, your ultimate destination for effortless and delightful food ordering. Our mission is to connect food lovers with their favorite restaurants and dishes in the most convenient way possible. Whether you're craving a quick bite or planning a feast, EverGreen is here to make your dining experience seamless and enjoyable.</p>                </div>
+                        Welcome to <b>Cafe 47</b>, your cozy retreat for premium coffee and handcrafted drinks. We believe that every cup tells a story, and we are here to serve you the finest brews made from carefully selected beans. Whether you need a morning espresso, a creamy latte, or a refreshing iced drink, <b>Cafe 47</b> is the perfect place to relax and recharge.
+                    </p>
+                </div>
                 <div className="col-md-12 mt-3">
                     <h3>Who We Are</h3>
                     <p>
-                    Founded in 2020, EverGreen was born out of a passion for food and technology. We are a team of food enthusiasts, tech experts, and customer service professionals dedicated to revolutionizing the way you order food. Our diverse backgrounds and shared love for culinary delights drive us to deliver exceptional service and innovative solutions.
+                        Established in 2020, <b>Cafe 47</b> was founded with a passion for exceptional coffee and warm hospitality. Our team of expert baristas and coffee enthusiasts is dedicated to crafting the perfect cup for every customer. We take pride in sourcing high-quality beans, experimenting with unique flavors, and creating a welcoming space where coffee lovers can unwind, work, or connect over a great drink.
                     </p>
                 </div>
+
             </div>
         </div>
     )

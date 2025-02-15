@@ -12,8 +12,11 @@ const Footer = () => {
                         {/* <img src={assets.logo} alt="Logo" /> */}
                         <h1 className='text-light'>CAFE 47</h1>
                     </div>
-                    <p className="mt-4 p-4">"Quench your thirst with convenience!
-                        Explore our refreshing array of freshly squeezed juices, crafted with care and delivered straight to your doorstep. Sip, enjoy, repeat!"</p>
+                    <p className="mt-4 p-4">
+                        "<b>Indulge in every sip at Cafe 47!</b>
+                        From <b>rich, aromatic coffee</b> to <b>refreshing handcrafted drinks</b>, we bring you the perfect blend of flavor and comfort.
+                        <b>Sit back, sip, and enjoy the moment!</b>"
+                    </p>
                 </div>
                 <div className="col-md-6 mt-4 p-4 links">
                     <h4>contact</h4>
