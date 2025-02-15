@@ -1,0 +1,18 @@
+.food-display {
+    padding: 0px 20px;
+    padding-bottom: 30px;
+    background-color: #444;
+    color: #fff;
+}
+
+.food-display-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+@media (max-width: 500px) {
+    .food-display-list {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+}

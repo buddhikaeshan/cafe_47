@@ -1,0 +1,40 @@
+/* banner */
+.banner-img{
+    height: 500px;
+    object-fit: cover;
+    width: 100%;
+    max-width: 98%;
+    margin: 20px 10px ;
+    background-color: #333;
+    border-radius:20px ;
+}
+
+/* about */
+.about{
+    padding: 40px 20px;
+    background-color: #333;
+}
+.about h3{
+    color: #fff;
+}
+.about p{
+    max-width: 100%;
+    color: #fff;
+    font-size: 13px;
+    word-spacing: 0px;
+}
+.header_bg{
+    background-color: #333;
+}
+@media (max-width: 768px) {
+    .about{
+        padding: 0 20px;
+    }
+    .about p{
+    max-width: 100%;
+    text-align:justify;
+    }
+    .banner-img{
+        display: none;
+    }
+}

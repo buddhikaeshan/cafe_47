@@ -1,0 +1,15 @@
+.logo{
+    width: max(10%,200px);
+    height: auto;
+    margin: 10px;
+}
+.profile{
+    padding:10px 10px 0px 0px ;
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+}

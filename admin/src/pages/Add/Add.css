@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+.add-form {
+    width: 70%;
+    margin-left: max(5vw, 25px);
+    margin-top: 50px;
+    color: #6d6d6d;
+    font-size: 16px;
+    height: 100vh;
+}
+
+.add-form {
+    gap: 20px;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-image-upload img {
+    width: 150px;
+}
+
+.add-product-name,
+.add-product-des {
+    width: max(40%, 280px);
+}
+
+.add-product-name input,
+.add-product-des textarea {
+    padding: 10px;
+    font-size: 13px;
+}
+
+.add-categoty-price {
+    display: flex;
+    gap: 30px;
+    width: max(40%, 280px);
+}
+
+.add-categoty-price input,
+select {
+    max-width: 140px;
+    font-size: 13px;
+    padding: 5px 10px;
+}
+
+.btn {
+    display: flex;
+    gap: 2px;
+}
+
+.add-btn,
+.reset-btn {
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.add-btn {
+    background-color: #a3fb94;
+}
+
+.reset-btn {
+    background-color: #ffadad;
+}
+
+@media (max-width:500px) {
+    .add-categoty-price {
+        display: block;
+    }
+
+    .add-image-upload img {
+        width: 100px;
+    }
+    .add-product-name input,
+    .add-product-des textarea,
+    .add-categoty-price input,
+    select {
+        max-width: 250px;
+    }
+}

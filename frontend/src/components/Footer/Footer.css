@@ -1,0 +1,29 @@
+.footer{
+    width: 100%;
+    background-size: cover;
+}
+
+.ftr {
+    padding: 0px 40px;
+    background-color: #313131;
+}
+.ftr p {
+    max-width: 90%;
+    font-size: 13px;
+    color: #f4f4f4;
+    font-weight: 100;
+    font-family:monospace;
+    margin-bottom: 10px;
+}
+.logo-frt {
+    margin: 20px 0px 0 10px ;
+}
+
+.logo-frt img {
+    width: 200px;
+    height: auto;
+}
+
+.links a,h4{
+    color: #fff;
+}
