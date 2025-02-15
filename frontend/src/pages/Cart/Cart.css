@@ -16,7 +16,9 @@
     color:#000;
 }
 .cart-items-item img{
-    width:70px;
+    width:100px;
+    height: 100px;
+    object-fit:cover ;
 }
 
 .close{

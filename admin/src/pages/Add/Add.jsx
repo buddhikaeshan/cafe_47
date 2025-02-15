@@ -12,7 +12,7 @@ const Add = ({ url }) => {
     name: '',
     description: '',
     price: '',
-    category: 'Raw Refreshers'
+    category: 'Hot Coffee'
   });
 
   const onChangeHandler = (event) => {
@@ -117,10 +117,11 @@ const Add = ({ url }) => {
                 id="category"
                 className="form-select"
               >
-                <option value="Raw Refreshers">Raw Refreshers</option>
-                <option value="Milkshakes">Milkshakes</option>
-                <option value="Iced Green tea">Iced Green tea</option>
-                <option value="Smoothies">Smoothies</option>
+                <option value="Hot Coffee">Hot Coffee</option>
+                <option value="Cold Coffee">Cold Coffee</option>
+                <option value="Cold Brew">Cold Brew</option>
+                <option value="Iced Tea">Iced Tea</option>
+                <option value="Fizzy Drinks">Fizzy Drinks</option>
               </select>
             </div>
 

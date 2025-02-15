@@ -30,14 +30,15 @@ const FoodItem = ({ id, name, price, description, image }) => {
                                         <h4 className="mb-0 food-p text-light">Rs.{price}</h4>
 
                                         <div className="size-selection">
-                                            <label>Size:</label>
-                                            <select 
+                                            <label htmlFor='size' className='text-light' >Size:</label>
+                                            <select  className='form-contro text-center '
                                                 value={size} 
                                                 onChange={(e) => setSize(e.target.value)}
+                                                id='size'
                                             >
-                                                <option value="Small">Small</option>
-                                                <option value="Medium">Medium</option>
-                                                <option value="Large">Large</option>
+                                                <option className='option' value="Small">Small</option>
+                                                <option className='option' value="Medium">Medium</option>
+                                                <option className='option' value="Large">Large</option>
                                             </select>
                                         </div>
 

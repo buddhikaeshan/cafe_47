@@ -36,16 +36,19 @@ export const assets = {
 
 export const menulist = [
     {
-        menuName: "Raw Refreshers"
+        menuName: "Hot Coffee"
     },
     {
-        menuName: "Milkshakes"
+        menuName: "Cold Coffee"
     },
     {
-        menuName: "Iced Green tea"
+        menuName: "Cold Brew"
     },
     {
-        menuName: "Smoothies"
+        menuName: "Iced Tea"
+    },
+    {
+        menuName: "Fizzy Drinks"
     },
 ]
 
