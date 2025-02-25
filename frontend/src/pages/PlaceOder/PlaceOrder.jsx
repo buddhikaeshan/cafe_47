@@ -3,6 +3,7 @@ import './PlaceOrder.css';
 import axios from 'axios';
 import { MenuContext } from '../../context/MenuContext';
 import { useNavigate } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
 
 const PlaceOrder = () => {
   const { getTotalCartAmount, token, foodlist, cartItems, url } = useContext(MenuContext);
@@ -16,6 +17,11 @@ const PlaceOrder = () => {
     city: "",
     address: ""
   });
+
+  // Initialize EmailJS with your Public Key (do this once, preferably in your app's entry point)
+  useEffect(() => {
+    emailjs.init("5SDO3Q7F0bhZgUiLb"); // Replace with your EmailJS Public Key
+  }, []);
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -37,7 +43,7 @@ const PlaceOrder = () => {
           orderItems.push({
             ...itemInfo,
             quantity: cartItem.quantity,
-            size: size // Add the size information
+            size: size
           });
         }
       }
@@ -51,20 +57,41 @@ const PlaceOrder = () => {
 
     try {
       const response = await axios.post(
-        `${url}/api/order/place`, 
-        orderData, 
+        `${url}/api/order/place`,
+        orderData,
         { headers: { token } }
       );
 
       if (response.data.success) {
         const { session_url } = response.data;
+
+        // Send confirmation email using EmailJS
+        try {
+          const emailParams = {
+            to_email: data.email,
+            to_name: data.firstName,
+            total_amount: getTotalCartAmount() + 100,
+            order_items: orderItems.map(item => `${item.name} (${item.size}) x ${item.quantity}`).join(', '),
+          };
+
+          await emailjs.send(
+            "service_86ojqgs",    // Replace with your EmailJS Service ID
+            "template_64d3308",   // Replace with your EmailJS Template ID
+            emailParams
+          );
+          console.log("Confirmation email sent successfully");
+        } catch (emailError) {
+          console.log("Email sending failed:", emailError);
+          // Don't block checkout if email fails
+        }
+
         window.location.replace(session_url);
       } else {
-        alert("Error in place order");
+        alert("Error in place order: " + (response.data.message || "Unknown error"));
       }
     } catch (error) {
-      console.log(error);
-      alert("Error during order placement. Please try again.");
+      console.log("Order placement error:", error);
+      alert("Error during order placement: " + (error.message || "Please try again"));
     }
   };
 
