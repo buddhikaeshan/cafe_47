@@ -4,8 +4,36 @@ import { MenuContext } from '../../context/MenuContext';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  const { cartItems, foodlist, removeFromCart, getTotalCartAmount, url } = useContext(MenuContext);
+  const { cartItems, foodlist, removeFromCart, url } = useContext(MenuContext);
   const navigate = useNavigate();
+
+  // Function to calculate adjusted price based on size
+  const getAdjustedPrice = (basePrice, size) => {
+    const price = parseFloat(basePrice);
+    if (size === 'Small') { return price - 100; }
+    if (size === 'Large') { return price + 150; }
+    return price; // default price for medium or unspecified size
+  };
+
+  // Calculate total amount locally with size adjustments
+  const calculateTotalCartAmount = () => {
+    let total = 0;
+    Object.entries(cartItems).forEach(([cartKey, cartItem]) => {
+      if (cartItem.quantity > 0) {
+        const [itemId] = cartKey.split('-');
+        const item = foodlist.find(food => food._id === itemId);
+        if (item) {
+          const adjustedPrice = getAdjustedPrice(item.price, cartItem.size);
+          total += adjustedPrice * cartItem.quantity;
+        }
+      }
+    });
+    return total;
+  };
+
+  const subtotal = calculateTotalCartAmount();
+  const deliveryFee = subtotal === 0 ? 0 : 100;
+  const grandTotal = subtotal + deliveryFee;
 
   return (
     <div className='cart'>
@@ -28,15 +56,17 @@ const Cart = () => {
 
             if (!item) return null;
 
+            const adjustedPrice = getAdjustedPrice(item.price, cartItem.size);
+
             return (
               <div key={cartKey}>
                 <div className="cart-items-title cart-items-item">
                   <img id="img" src={`${url}/images/${item.image}`} alt="" />
                   <p>{item.name}</p>
                   <p>{cartItem.size}</p>
-                  <p>Rs.{item.price}</p>
+                  <p>Rs.{adjustedPrice.toFixed(2)}</p>
                   <p>{cartItem.quantity}</p>
-                  <p>Rs.{item.price * cartItem.quantity}</p>
+                  <p>Rs.{(adjustedPrice * cartItem.quantity).toFixed(2)}</p>
                   <p onClick={() => removeFromCart(itemId, cartItem.size)} className='close'>
                     Remove
                   </p>
@@ -53,33 +83,26 @@ const Cart = () => {
           <h2>Cart Totals</h2>
           <div className="cart-total-details">
             <p>Subtotal</p>
-            <p>Rs. {getTotalCartAmount()}</p>
+            <p>Rs. {subtotal.toFixed(2)}</p>
           </div>
           <hr />
           <div className="cart-total-details">
             <p>Delivery Fee</p>
-            <p>Rs. {getTotalCartAmount() === 0 ? 0 : 100}</p>
+            <p>Rs. {deliveryFee.toFixed(2)}</p>
           </div>
           <hr />
           <div className="cart-total-details">
             <p><b>Total</b></p>
-            <p><b>Rs. {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 100}</b></p>
+            <p><b>Rs. {grandTotal.toFixed(2)}</b></p>
           </div>
           <hr />
-          <p align="right"><button onClick={() => navigate('/order')} >PROCEED TO CHECKOUT</button></p>
-        </div>
-        <div className="cart-promocode">
-          <div className="promocode">
-            <p>if you have <span>Promo code</span>, Enter Here</p>
-            <div className="cart-promocode-input">
-              <input type="text" placeholder='Promo Code' />
-              <button>Submit</button>
-            </div>
-          </div>
+          <p align="right">
+            <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
+          </p>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

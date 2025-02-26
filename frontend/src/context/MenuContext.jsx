@@ -73,10 +73,20 @@ const MenuContextProvider = (props) => {
         for (const cartKey in cartItems) {
             if (cartItems[cartKey].quantity > 0) {
                 const [itemId] = cartKey.split('-');
-                let itemInfo = foodlist.find((product) => product._id === itemId);
+                const itemInfo = foodlist.find((product) => product._id === itemId);
 
                 if (itemInfo) {
-                    totalAmount += itemInfo.price * cartItems[cartKey].quantity;
+                    let adjustedPrice = parseFloat(itemInfo.price); // Base price
+                    const size = cartItems[cartKey].size;
+
+                    // Apply size adjustments
+                    if (size === "Small") {  // Note: Changed "Small" to "small" to match Cart component
+                        adjustedPrice -= 100;
+                    } else if (size === "Large") {  // Note: Changed "Large" to "large" to match Cart component
+                        adjustedPrice += 150;
+                    }
+
+                    totalAmount += adjustedPrice * cartItems[cartKey].quantity;
                 }
             }
         }
