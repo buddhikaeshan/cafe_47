@@ -40,6 +40,14 @@ const Orders = ({ url }) => {
     }
   };
 
+  useEffect(() => {
+    fetchAllOrders(); // Initial fetch
+    const intervalId = setInterval(fetchAllOrders, 5000); // Poll every 5 seconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+}, [url]);
+
   const generatePDF = () => {
     const doc = new jsPDF();
     doc.text('Order List', 14, 20);
@@ -155,6 +163,7 @@ const Orders = ({ url }) => {
             <th>Items</th>
             <th>Total Items</th>
             <th>Amount</th>
+            <th>Payment</th>
             <th>Customer Name</th>
             <th>Address</th>
             <th>Phone</th>
@@ -174,6 +183,7 @@ const Orders = ({ url }) => {
               </td>
               <td>{order.item.length}</td>
               <td>Rs {order.amount}</td>
+              <td>{order.payment}</td>
               <td>
                 {order.address.firstName} {order.address.lastName}
               </td>

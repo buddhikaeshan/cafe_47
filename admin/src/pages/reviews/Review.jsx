@@ -37,6 +37,14 @@ const Review = ({ url }) => {
             console.error('Error updating status:', error);
         }
     };
+    
+    useEffect(() => {
+        fetchComments(); // Initial fetch
+        const intervalId = setInterval(fetchComments, 5000); // Poll every 5 seconds
+
+        // Cleanup interval on component unmount
+        return () => clearInterval(intervalId);
+    }, [url]);
 
     if (loading) {
         return <div>Loading...</div>;

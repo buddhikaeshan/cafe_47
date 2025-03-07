@@ -15,21 +15,23 @@ const Comments = () => {
 
     // Fetch existing comments
     useEffect(() => {
-        const fetchComments = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get(`${url}/api/comment/list`);
-                const comments = response.data.data.filter(comment => comment.status === 'approved');
-                setComments(comments.reverse());
-            } catch (err) {
-                setError('Failed to fetch comments');
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
+
         fetchComments();
     }, [url]);
+
+    const fetchComments = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get(`${url}/api/comment/list`);
+            const comments = response.data.data.filter(comment => comment.status === 'approved');
+            setComments(comments.reverse());
+        } catch (err) {
+            setError('Failed to fetch comments');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleInputChange = (e) => {
         setNewComment({ ...newComment, comment: e.target.value });
@@ -70,6 +72,14 @@ const Comments = () => {
         }
     };
 
+    useEffect(() => {
+        fetchComments(); // Initial fetch
+        const intervalId = setInterval(fetchComments, 5000); // Poll every 5 seconds
+
+        // Cleanup interval on component unmount
+        return () => clearInterval(intervalId);
+    }, [url]);
+
     const renderStars = (rating) => {
         const stars = [];
         for (let i = 1; i <= 5; i++) {
@@ -91,14 +101,14 @@ const Comments = () => {
     };
 
     // if (loading) return <div>Loading reviews...</div>;
-    // if (error) return <div style={{ color: 'red' }}>{error}</div>;
 
     return (
         <div className="comments-container">
             <h1 className="comments-title">Reviews</h1>
-
             <div className="add-review">
                 <h3 className='text-light'>Add Your Review</h3>
+                <div style={{ color: 'red' }}>{error}</div>
+
                 <form onSubmit={handleSubmit}>
                     <div className='d-flex align-items-center '>
                         <label className="rating-label text-light pt-1">Rating:</label>

@@ -10,3 +10,32 @@ a{
   text-decoration:none;
   color:inherit;
 }
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 10px; /* Width of vertical scrollbar */
+    height: 10px; /* Height of horizontal scrollbar */
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+    background: #333; /* Dark gray track */
+    border-radius: 5px; /* Rounded track */
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+    background: #3498db; /* Blue thumb */
+    border-radius: 5px; /* Rounded thumb */
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+    background: #2980b9; /* Darker blue on hover */
+}
+
+/* Global scrollbar styles for Firefox */
+html,
+body {
+    scrollbar-width: thin; /* Thinner scrollbar */
+    scrollbar-color: #3498db #333; /* Thumb color, track color */
+}
