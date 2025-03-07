@@ -110,6 +110,7 @@ const Comments = () => {
                             value={newComment.comment}
                             onChange={handleInputChange}
                             placeholder="Write your review here..."
+                            maxLength={150}
                         />
                     </div>
                     <button type="submit" className="submit-button">
@@ -125,7 +126,7 @@ const Comments = () => {
                     comments.map((comment) => (
                         <div key={comment._id} className="comment-card">
                             <div className="comment-header">
-                                <strong className="comment-name">{comment.name}</strong>
+                                <p><strong className="comment-name">{comment.name}</strong></p>
                                 <span>{renderStars(comment.rating)}</span>
                             </div>
                             <p className="comment-text">{comment.comment}</p>

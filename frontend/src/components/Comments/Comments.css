@@ -61,14 +61,26 @@
 }
 
 /* Comment List Styles */
+.rating-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
 .comment-card {
     background: #222;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 15px;
+    min-width: 250px;
+    max-width: 300px;
+    height: auto;
+    display: inline-block;
+    vertical-align: top;
 }
 
+/* Comment Header */
 .comment-header {
     display: flex;
     justify-content: space-between;
@@ -95,9 +107,5 @@
     color: #ddd;
     text-align: center;
     padding: 20px;
-}
-
-.rating-container{
-    height: 50vh;
-    overflow-y: auto;
+    white-space: normal; /* Reset white-space for no-reviews text */
 }
