@@ -5,6 +5,7 @@ import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
 import { useState } from 'react'
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
 import Footer from '../../components/Footer/Footer'
+import Comments from '../../components/Comments/Comments'
 
 const Home = () => {
 
@@ -15,6 +16,7 @@ const Home = () => {
         <Header/>
         <ExploreMenu category={category} setCategory={setCategory}/>
         <FoodDisplay category={category}/>
+        <Comments/>
         <Footer/>
     </div>
   )

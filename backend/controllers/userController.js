@@ -64,5 +64,28 @@ const register = async (req, res) => {
         res.json({success:false,message:"Error"})
     }
 }
+const listUsers = async (req, res) => {
+    try {
+        const users = await userModel.find({});
+        res.json({ success: true, data: users });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" });
+    }
+};
 
-export { loginUser, register };
+const getUser = async (req, res) => {
+    try {
+        console.log('User ID from middleware:', req.body.userId); // Debug
+        const user = await userModel.findById(req.body.userId).select('name');
+        if (!user) {
+            return res.json({ success: false, message: "User not found" });
+        }
+        res.json({ success: true, data: user });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" });
+    }
+};
+
+export { loginUser, register, listUsers, getUser };

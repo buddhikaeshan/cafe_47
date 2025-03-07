@@ -101,7 +101,7 @@ const List = ({ url }) => {
          PDF
         </button>
       </div>
-      <table className="table">
+      <table className="table table-striped table-dark table-hover">
         <thead>
           <tr>
             <th>Image</th>

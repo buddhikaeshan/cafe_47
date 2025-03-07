@@ -1,0 +1,103 @@
+.comments-container {
+    padding: 20px;
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: #333;
+}
+
+/* Heading Styles */
+.comments-title {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Add Review Section */
+.add-review {
+    margin-bottom: 30px;
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.rating-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.star {
+    font-size: 40px;
+    cursor: pointer;
+}
+.star.filled {
+    color: #f1c40f;
+}
+
+.star.empty {
+    color: #ccc;
+}
+
+.review-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    resize: vertical;
+}
+
+.submit-button {
+    background: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.submit-button:hover {
+    background: #2980b9;
+}
+
+/* Comment List Styles */
+.comment-card {
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.comment-name {
+    font-weight: bold;
+    color: #fff;
+}
+
+.comment-text {
+    color: #f6ff00;
+    margin-bottom: 5px;
+}
+
+.comment-status {
+    color: #fff;
+    font-size: 0.9em;
+}
+
+/* Empty State */
+.no-reviews {
+    color: #ddd;
+    text-align: center;
+    padding: 20px;
+}
+
+.rating-container{
+    height: 50vh;
+    overflow-y: auto;
+}

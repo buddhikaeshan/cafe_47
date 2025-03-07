@@ -7,7 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 const placeOrder = async (req, res) => {
 
     const frontend_url = "http://localhost:3000"
-    
+
 
     try {
         const newOrder = new orderModel({
@@ -25,7 +25,7 @@ const placeOrder = async (req, res) => {
                 product_data: {
                     name: item.name
                 },
-                unit_amount: item.price*100
+                unit_amount: item.price * 100
             },
             quantity: item.quantity
         }))
@@ -35,7 +35,7 @@ const placeOrder = async (req, res) => {
                 product_data: {
                     name: "Delivery Charges"
                 },
-                unit_amount: 100*100
+                unit_amount: 100 * 100
             },
             quantity: 1
         })
@@ -72,34 +72,70 @@ const verifyOrder = async (req, res) => {
 
 const userOrders = async (req, res) => {
     try {
-        const orders=await orderModel.find({userId:req.body.userId})
-        res.json({success:true,data:orders})
+        const orders = await orderModel.find({ userId: req.body.userId })
+        res.json({ success: true, data: orders })
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"Error"})
+        res.json({ success: false, message: "Error" })
     }
 }
 
-const listOrders=async(req,res)=>{
+const listOrders = async (req, res) => {
     try {
-        const orders=await orderModel.find({});
-        res.json({success:true,data:orders})
+        const orders = await orderModel.find({});
+        res.json({ success: true, data: orders })
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"error in list order"})
+        res.json({ success: false, message: "error in list order" })
     }
 }
 
 //api for order status
-const updateStatus=async(req,res)=>{
+const updateStatus = async (req, res) => {
     try {
-        await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})
-        res.json({success:true,message:"Status Update"})
+        await orderModel.findByIdAndUpdate(req.body.orderId, { status: req.body.status })
+        res.json({ success: true, message: "Status Update" })
     } catch (error) {
         console.log(error);
-        res.json({success:false,message:"Error"})
+        res.json({ success: false, message: "Error" })
     }
 }
 
+const cancelOrder = async (req, res) => {
+    try {
+        const { orderId } = req.body;
+        const token = req.headers.token;
 
-export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
+        // Add token verification here if you're using JWT
+        // For example:
+        // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        // if (!decoded) {
+        //     return res.status(401).json({ success: false, message: "Unauthorized" });
+        // }
+
+        const order = await orderModel.findById(orderId);
+        if (!order) {
+            return res.status(404).json({ success: false, message: "Order not found" });
+        }
+
+        // Check if order can be cancelled
+        if (order.status === "Delivered" || order.status === "Canceled") {
+            return res.status(400).json({ success: false, message: "Order cannot be canceled" });
+        }
+
+        // Update order status
+        order.status = "Canceled";
+        await order.save();
+
+        res.json({ success: true, message: "Order cancelled successfully" });
+    } catch (error) {
+        console.error("Cancel order error:", error);
+        res.status(500).json({ 
+            success: false, 
+            message: "Server error while cancelling order",
+            error: error.message 
+        });
+    }
+};
+
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, cancelOrder };

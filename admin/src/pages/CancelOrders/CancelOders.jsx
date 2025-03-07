@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './Orders.css';
+import './Cancel.css';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { Download } from 'lucide-react';
 
-const Orders = ({ url }) => {
+const CancelOrders = ({ url }) => {
   const [orders, setOrders] = useState([]);
 
   const fetchAllOrders = async () => {
@@ -14,7 +14,7 @@ const Orders = ({ url }) => {
       const response = await axios.get(url + '/api/order/list');
       if (response.data.success) {
         // Filter out cancelled orders
-        const activeOrders = response.data.data.filter(order => order.status !== 'Canceled');
+        const activeOrders = response.data.data.filter(order => order.status === 'Canceled');
         setOrders(activeOrders.reverse());
       } else {
         toast.error('Error fetching orders');
@@ -188,12 +188,10 @@ const Orders = ({ url }) => {
               <td className='status'>
                 <select 
                   onChange={(event) => statusHandler(event, order._id)} 
-                  value={order.status || 'Food Processing'}
+                  value={order.status || 'Canceled'}
                 >
+                  <option value="Delivered">Canceled</option>
                   <option value="Food Processing">Food Processing</option>
-                  <option value="Out for Delivery">Out for Delivery</option>
-                  <option value="Delivered">Delivered</option>
-                  <option value="Canceled">Canceled</option>
                 </select>
               </td>
             </tr>
@@ -204,4 +202,4 @@ const Orders = ({ url }) => {
   );
 };
 
-export default Orders;
+export default CancelOrders;

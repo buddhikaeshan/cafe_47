@@ -1,12 +1,10 @@
 .table-container {
-    width: 80%;
+    width: 95%;
     margin: 0 auto;
     margin-top: 50px;
 }
 
 .table {
-    width: 100%;
-    border-collapse: collapse;
     font-family: Arial, sans-serif;
 }
 
@@ -18,17 +16,12 @@
     font-size: 14px;
 }
 
-td {
-    padding: 0 10px;
-}
 
 .table th {
-    background-color: #343a40;
     color: white;
 }
 
 .table tbody tr:nth-child(even) {
-    background-color: #ffffff;
     border-radius: 20px;
 }
 
