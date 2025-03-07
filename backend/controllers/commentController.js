@@ -35,4 +35,24 @@ const listComment = async (req, res) => {
     }
 };
 
-export { addComment, listComment };
+const updateCommentStatus = async (req, res) => {
+    const { commentId, status } = req.body;
+    try {
+
+        const comment = await commentModel.findByIdAndUpdate(
+            commentId,
+            { status },
+        );
+
+        if (!comment) {
+            return res.json({ success: false, message: "Comment not found" });
+        }
+
+        res.json({ success: true, message: "Status updated", data: comment });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error" });
+    }
+};
+
+export { addComment, listComment, updateCommentStatus };

@@ -2,7 +2,7 @@ import React from 'react'
 import './Sidebar.css'
 import { assets } from '../../assets/assets'
 import { NavLink } from 'react-router-dom'
-import {BarChart3, ClipboardSignature, Eye} from 'lucide-react'
+import {BarChart3, ClipboardSignature, Eye, MessageCircleMore} from 'lucide-react'
 
 const Sidebar = () => {
   return (
@@ -29,6 +29,11 @@ const Sidebar = () => {
           {/* <img src={assets.order_icon} alt="" /> */}
           <ClipboardSignature/>
           <p>Cancel Orders</p>
+        </NavLink>
+        <NavLink to='/review' className="sidebar-option">
+          {/* <img src={assets.order_icon} alt="" /> */}
+          <MessageCircleMore/>
+          <p>Reviews</p>
         </NavLink>
       </div>
     </div>

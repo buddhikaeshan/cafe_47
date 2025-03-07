@@ -19,7 +19,8 @@ const Comments = () => {
             try {
                 setLoading(true);
                 const response = await axios.get(`${url}/api/comment/list`);
-                setComments(response.data.data);
+                const comments = response.data.data.filter(comment => comment.status === 'approved');
+                setComments(comments.reverse());
             } catch (err) {
                 setError('Failed to fetch comments');
                 console.error(err);
@@ -60,7 +61,7 @@ const Comments = () => {
             });
 
             const response = await axios.get(`${url}/api/comment/list`);
-            setComments(response.data.data);
+            // setComments(response.data.data);
             setNewComment({ comment: '', rating: 0 });
             setError(null);
         } catch (err) {
