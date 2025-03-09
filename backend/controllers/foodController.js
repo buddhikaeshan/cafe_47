@@ -11,6 +11,7 @@ const addFood = async (req, res) => {
         description: req.body.description,
         price: req.body.price,
         category: req.body.category,
+        type:req.body.type,
         image: image_filename
     })
     try {

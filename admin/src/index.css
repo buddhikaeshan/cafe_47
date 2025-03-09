@@ -8,6 +8,13 @@
 
 body{
     min-height: 100vh;
+    background-color: #222;
+}
+
+h3,
+h2,
+label{
+    color: #fff;
 }
 
 a{

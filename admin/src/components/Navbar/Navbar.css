@@ -2,6 +2,7 @@
     width: max(10%,200px);
     height: auto;
     margin: 10px;
+    color: #fff;
 }
 .profile{
     padding:10px 10px 0px 0px ;
@@ -12,4 +13,5 @@
 .navbar{
     display: flex;
     justify-content: space-between;
+    background-color: #111;
 }

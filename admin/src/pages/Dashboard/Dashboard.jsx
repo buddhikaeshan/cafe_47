@@ -78,11 +78,12 @@ const Dashboard = ({url}) => {
     return (
         <div style={{
             padding: '20px',
-            maxWidth: '1200px',
+            maxWidth: '1920px',
             margin: '0 auto'
-        }}>
+        }}
+        className='table-container'>
             <h1 style={{
-                color: '#333',
+                color: '#fff',
                 marginBottom: '30px'
             }}>Dashboard</h1>
             

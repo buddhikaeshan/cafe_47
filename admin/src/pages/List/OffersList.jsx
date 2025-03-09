@@ -6,7 +6,7 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import UpdateModal from './UpdateModal';
 
-const List = ({ url }) => {
+const OffersList = ({ url }) => {
   const [list, setList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
@@ -138,4 +138,4 @@ const List = ({ url }) => {
   );
 };
 
-export default List;
+export default OffersList;

@@ -1,19 +1,18 @@
 import React from 'react';
-import './Add.css';
 import { assets } from '../../assets/assets';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure Bootstrap CSS is imported
 
-const Add = ({ url }) => {
+const Offers = ({ url }) => {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: '',
     description: '',
     price: '',
     category: 'Hot Coffee',
-    type:'shop'
+    type:'Offer'
   });
 
   const onChangeHandler = (event) => {
@@ -56,7 +55,7 @@ const Add = ({ url }) => {
 
   return (
     <div className="table-container">
-      <h3>Add Product</h3>
+      <h3>Add Offers</h3>
       <div className="add-form">
         <form onSubmit={onSubmitHandler} className="needs-validation" noValidate>
           <div className="mb-3">
@@ -152,4 +151,4 @@ const Add = ({ url }) => {
   );
 };
 
-export default Add;
+export default Offers;
