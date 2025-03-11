@@ -6,6 +6,7 @@ import { useState } from 'react'
 import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
 import Footer from '../../components/Footer/Footer'
 import Comments from '../../components/Comments/Comments'
+import OffersDisplay from '../../components/OffersDisplay/OffersDisplay'
 
 const Home = () => {
 
@@ -14,6 +15,7 @@ const Home = () => {
   return (
     <div>
         <Header/>
+        <OffersDisplay/>
         <ExploreMenu category={category} setCategory={setCategory}/>
         <FoodDisplay category={category}/>
         <Comments/>

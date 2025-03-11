@@ -13,7 +13,7 @@ const Add = ({ url }) => {
     description: '',
     price: '',
     category: 'Hot Coffee',
-    type:'shop'
+    type: 'shop'
   });
 
   const onChangeHandler = (event) => {
@@ -24,11 +24,15 @@ const Add = ({ url }) => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    if (data.name === '' || data.description === '' || data.price === '' || image === false) {
+      return toast.error('All fields are required');
+    }
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('description', data.description);
     formData.append('price', Number(data.price));
     formData.append('category', data.category);
+    formData.append('type', data.type);
     formData.append('image', image);
 
     const response = await axios.post(`${url}/api/food/add`, formData);
@@ -37,7 +41,7 @@ const Add = ({ url }) => {
         name: '',
         description: '',
         price: '',
-        category: 'Raw Refreshers'
+        category: 'Hot Coffee'
       });
       setImage(false);
       toast.success(response.data.message);

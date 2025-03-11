@@ -10,10 +10,15 @@ const Cart = () => {
   // Function to calculate adjusted price based on size
   const getAdjustedPrice = (basePrice, size) => {
     const price = parseFloat(basePrice);
-    if (size === 'Small') { return price - 100; }
-    if (size === 'Large') { return price + 150; }
-    return price; // default price for medium or unspecified size
-  };
+    if (size === 'Small') {
+        return price - (price * 0.15);
+    }
+    if (size === 'Large') {
+        return price + (price * 0.15);
+    }
+    return price;
+};
+
 
   // Calculate total amount locally with size adjustments
   const calculateTotalCartAmount = () => {

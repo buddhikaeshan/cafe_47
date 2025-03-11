@@ -189,7 +189,7 @@ const Orders = ({ url }) => {
               </td>
               <td>{order.address.city}, {order.address.address}</td>
               <td>{order.address.phone}</td>
-              <td>{order.date}</td>
+              <td>{new Date(order.date).toLocaleString()}</td>
               <td> 
                 <button className='btn btn-success btn-sm' onClick={() => downloadInvoice(order)}>
                   <Download/>

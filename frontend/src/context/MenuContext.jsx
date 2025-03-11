@@ -12,11 +12,11 @@ const MenuContextProvider = (props) => {
 
     const addToCart = async (itemId, size) => {
         const cartKey = `${itemId}-${size}`; // Create unique key for item+size combination
-        
+
         if (!cartItems[cartKey]) {
             setCartItems((prev) => ({ ...prev, [cartKey]: { quantity: 1, size } }));
-        } else if (cartItems[cartKey].quantity > 39) {
-            alert(`You can only add 40 items`);
+        } else if (cartItems[cartKey].quantity > 49) {
+            alert(`You can only add 50 items`);
             return;
         } else {
             setCartItems((prev) => ({
@@ -32,8 +32,8 @@ const MenuContextProvider = (props) => {
 
         if (token) {
             try {
-                await axios.post(`${url}/api/cart/add`, 
-                    { itemId, size }, 
+                await axios.post(`${url}/api/cart/add`,
+                    { itemId, size },
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -51,7 +51,7 @@ const MenuContextProvider = (props) => {
 
     const removeFromCart = async (itemId, size) => {
         const cartKey = `${itemId}-${size}`;
-        
+
         setCartItems((prev) => ({
             ...prev,
             [cartKey]: {
@@ -61,8 +61,8 @@ const MenuContextProvider = (props) => {
         }));
 
         if (token) {
-            await axios.post(url + "/api/cart/remove", 
-                { itemId, size }, 
+            await axios.post(url + "/api/cart/remove",
+                { itemId, size },
                 { headers: { token } }
             );
         }
@@ -80,11 +80,12 @@ const MenuContextProvider = (props) => {
                     const size = cartItems[cartKey].size;
 
                     // Apply size adjustments
-                    if (size === "Small") {  // Note: Changed "Small" to "small" to match Cart component
-                        adjustedPrice -= 100;
-                    } else if (size === "Large") {  // Note: Changed "Large" to "large" to match Cart component
-                        adjustedPrice += 150;
+                    if (size === "Small") {
+                        adjustedPrice -= adjustedPrice * 0.25; // Reduce 10%
+                    } else if (size === "Large") {
+                        adjustedPrice += adjustedPrice * 0.25; // Add 10%
                     }
+
 
                     totalAmount += adjustedPrice * cartItems[cartKey].quantity;
                 }

@@ -15,7 +15,8 @@ const List = ({ url }) => {
     try {
       const response = await axios.get(`${url}/api/food/list`);
       if (response.data.success) {
-        setList(response.data.data);
+        const listData=response.data.data.filter((item)=> item.type==='shop');
+        setList(listData);
       } else {
         toast.error("Error");
       }
@@ -61,7 +62,7 @@ const List = ({ url }) => {
     }
   };
 
-  const categories = ['Raw Refreshers', 'Milkshakes', 'Iced Green tea', 'Smoothies'];
+  const categories = ['Hot Coffee', 'Cold Coffee', 'Cold Brew', 'Iced Tea', 'Fizzy Drinks'];
 
   useEffect(() => {
     fetchList();

@@ -11,8 +11,10 @@ const Offers = ({ url }) => {
     name: '',
     description: '',
     price: '',
-    category: 'Hot Coffee',
-    type:'Offer'
+    status: 'Active',
+    startDate: '',
+    endDate: '',
+    type:'offer'
   });
 
   const onChangeHandler = (event) => {
@@ -23,20 +25,27 @@ const Offers = ({ url }) => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    if (data.name === '' || data.description === '' || data.price === '' || image === false) {
+      return toast.error('All fields are required');
+    }
     const formData = new FormData();
     formData.append('name', data.name);
     formData.append('description', data.description);
     formData.append('price', Number(data.price));
-    formData.append('category', data.category);
+    formData.append('status', data.status);
+    formData.append('type', data.type);
+    formData.append('startDate', data.startDate);
+    formData.append('endDate', data.endDate);
     formData.append('image', image);
 
-    const response = await axios.post(`${url}/api/food/add`, formData);
+    const response = await axios.post(`${url}/api/offer/add`, formData);
     if (response.data.success) {
       setData({
         name: '',
         description: '',
         price: '',
-        category: 'Raw Refreshers'
+        startDate: '',
+        endDate: ''
       });
       setImage(false);
       toast.success(response.data.message);
@@ -110,6 +119,17 @@ const Offers = ({ url }) => {
 
           <div className="row">
             <div className="col-md-6 mb-3">
+              <label htmlFor="" className='form-label'>Start Date</label>
+              <input type="date" name="startDate" id="startDate" value={data.startDate} className="form-control" onChange={onChangeHandler} />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label htmlFor="" className='form-label'>End Date</label>
+              <input type="date" name="endDate" id="endDate" value={data.endDate} className="form-control" onChange={onChangeHandler} />
+            </div>
+          </div>
+
+          <div className="row">
+            {/* <div className="col-md-6 mb-3">
               <label htmlFor="category" className="form-label">Product Category</label>
               <select
                 onChange={onChangeHandler}
@@ -124,7 +144,7 @@ const Offers = ({ url }) => {
                 <option value="Iced Tea">Iced Tea</option>
                 <option value="Fizzy Drinks">Fizzy Drinks</option>
               </select>
-            </div>
+            </div> */}
 
             <div className="col-md-6 mb-3">
               <label htmlFor="price" className="form-label">Product Price</label>
@@ -139,12 +159,16 @@ const Offers = ({ url }) => {
                 required
               />
             </div>
+            <div className="col-md-6 mt-4">
+              <div className="d-flex justify-content-end">
+                <button onClick={removeFile} type="reset" className="btn btn-danger">Clear</button>
+                <button type="submit" className="btn btn-primary">Add Product</button>
+              </div>
+            </div>
+
           </div>
 
-          <div className="d-flex justify-content-end">
-            <button onClick={removeFile} type="reset" className="btn btn-danger">Clear</button>
-            <button type="submit" className="btn btn-primary">Add Product</button>
-          </div>
+
         </form>
       </div>
     </div>

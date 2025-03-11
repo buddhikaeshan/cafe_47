@@ -10,7 +10,9 @@ const FoodDisplay = ({ category }) => {
         <div className='food-display' id='food-display'>
             <h2>Shop</h2>
             <div className="food-display-list">
-                {foodlist.map((item, index) => {
+                {foodlist
+                .filter(item => item.type === "shop")
+                .map((item, index) => {
                     if (category === "All" || category === item.category) {
                         return <FoodItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image} />
                     }

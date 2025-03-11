@@ -36,6 +36,9 @@ export const assets = {
 
 export const menulist = [
     {
+        menuName: "All"
+    },
+    {
         menuName: "Hot Coffee"
     },
     {
